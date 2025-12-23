@@ -1,3 +1,10 @@
+"""
+Identify undervalued NBA players by combining RAPTOR impact metrics,
+salary data, and minutes played.
+
+Outputs a ranked CSV of players with highest impact per dollar.
+"""
+
 import pandas as pd
 
 # ---------- LOAD ----------

@@ -1,3 +1,8 @@
+"""
+Scrapes player minutes from Basketball Reference and saves them
+for use in value analysis.
+"""
+
 import pandas as pd
 
 def main():
