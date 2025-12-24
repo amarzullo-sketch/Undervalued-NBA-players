@@ -94,7 +94,7 @@ Players are ranked by value score, and the top performers are saved to a CSV fil
 Output
 The final output is saved to:
 
-bash
+
 Copy code
 data/processed/output.csv
 The file contains:
@@ -111,22 +111,22 @@ Value score
 
 How to Run
 1. Clone the repository
-bash
+
 Copy code
 git clone https://github.com/amarzullo-sketch/Undervalued-NBA-players
 cd Undervalued-NBA-players
 2. Install dependencies
-bash
+
 Copy code
 pip install -r requirements.txt
 3. Run the analysis
-bash
+
 Copy code
 python src/main.py
 4. View results
 Open:
 
-bash
+
 Copy code
 data/processed/output.csv
 Assumptions & Limitations
