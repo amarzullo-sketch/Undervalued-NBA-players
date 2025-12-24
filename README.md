@@ -1,7 +1,6 @@
-Undervalued NBA Players Analysis
-Overview
+Undervalued NBA Players Analysis Overview
 
-This project analyzes NBA player performance to identify undervalued players—those who provide high on-court impact relative to their salary cost. By combining advanced impact metrics with contract and playing-time data, the analysis highlights players who may outperform the expectations implied by their contracts.
+This project analyzes NBA player performance from the **2022–23 NBA season** to identify undervalued players—those who provide high on-court impact relative to their salary cost. By combining advanced impact metrics with contract and playing-time data, the analysis highlights players who may outperform the expectations implied by their contracts.
 
 The goal is not to predict future performance, but to evaluate value efficiency: how much impact a player delivers per dollar spent.
 
@@ -11,31 +10,30 @@ NBA teams operate under strict salary caps, making efficient allocation of payro
 
 This project bridges that gap by:
 
-Using RAPTOR (a well-known advanced metric) to measure impact
+- Using RAPTOR (a well-known advanced metric) to measure impact  
+- Normalizing impact by salary  
+- Filtering by minutes played to avoid misleading small-sample results  
 
-Normalizing impact by salary
+Data Sources (2022–23 Season)
 
-Filtering by minutes played to avoid misleading small-sample results
+This project combines multiple public datasets from the **2022–23 NBA season**:
 
-Data Sources
+- RAPTOR Metrics  
+  Source: FiveThirtyEight  
+  Provides advanced offensive, defensive, and total impact ratings.
 
-This project combines multiple public datasets:
+- Player Salaries  
+  Source: Kaggle  
+  Contains NBA contract data (raw dollar amounts).
 
-RAPTOR Metrics
-Source: FiveThirtyEight
-Provides advanced offensive, defensive, and total impact ratings.
-
-Player Salaries
-Source: Kaggle
-Contains NBA contract data (raw dollar amounts).
-
-Minutes Played
-Source: Basketball Reference
-Used to filter out players with insufficient playing time.
+- Minutes Played  
+  Source: Basketball Reference  
+  Used to filter out players with insufficient playing time.
 
 All datasets are publicly available and used for educational purposes.
 
 Project Structure
+
 Undervalued-NBA-players/
 ├── src/
 │   ├── main.py
@@ -53,38 +51,29 @@ Undervalued-NBA-players/
 └── LICENSE
 
 Methodology
-1. Data Loading
 
+Data Loading  
 Each dataset is loaded using pandas, with columns renamed and standardized to enable reliable merging across sources.
 
-2. Data Cleaning
+Data Cleaning  
+- Salaries are converted from raw dollars to millions for interpretability  
+- Minutes played are converted to numeric values  
+- Players with missing or invalid data are removed  
 
-Salaries are converted from raw dollars to millions for interpretability
-
-Minutes played are converted to numeric values
-
-Players with missing or invalid data are removed
-
-3. Filtering
-
+Filtering  
 To avoid misleading results from small sample sizes, players must meet a minimum minutes threshold:
 
 MIN_MINUTES = 800
 
+This roughly corresponds to consistent rotational players across a full NBA season.
 
-This roughly corresponds to consistent rotational players across a season.
-
-4. Value Metric
-
-A value score is computed as:
+Value Metric  
 
 value_score = RAPTOR_total / salary_millions
 
+This metric measures impact per dollar spent, allowing fair comparison across contracts of different sizes.
 
-This measures impact per dollar spent, allowing fair comparison across contracts of different sizes.
-
-5. Ranking
-
+Ranking  
 Players are ranked by value score, and the top performers are saved to a CSV file for inspection.
 
 Output
@@ -93,57 +82,43 @@ The final output is saved to:
 
 data/processed/output.csv
 
-
 This file contains:
-
-Player name
-
-Minutes played
-
-Salary (millions)
-
-RAPTOR total
-
-Value score
+- Player name  
+- Minutes played (2022–23 season)  
+- Salary (millions)  
+- RAPTOR total  
+- Value score  
 
 How to Run
-1. Clone the repository
-git clone https://github.com/amarzullo-sketch/Undervalued-NBA-players
-cd Undervalued-NBA-players
 
-2. Install dependencies
-pip install -r requirements.txt
+Clone the repository  
+git clone https://github.com/amarzullo-sketch/Undervalued-NBA-players  
+cd Undervalued-NBA-players  
 
-3. Run the analysis
-python src/main.py
+Install dependencies  
+pip install -r requirements.txt  
 
-4. View results
+Run the analysis  
+python src/main.py  
 
-Open data/processed/output.csv.
+View results  
+Open data/processed/output.csv
 
 Assumptions & Limitations
 
-RAPTOR values are taken as-is and reflect the latest available season in the dataset
-
-Salaries represent contract values, not actual in-game performance incentives
-
-Injuries, role changes, and team context are not explicitly modeled
-
-This analysis is descriptive, not predictive
+- RAPTOR values reflect the 2022–23 season only  
+- Salaries represent contract values, not performance-based incentives  
+- Injuries, role changes, and team context are not explicitly modeled  
+- This analysis is descriptive, not predictive  
 
 Future Improvements
 
 Possible extensions to this project include:
-
-Adding data visualizations (bar charts of top value players)
-
-Incorporating additional metrics (e.g., BPM, EPM)
-
-Adjusting for position or role-based expectations
-
-Extending analysis to multiple seasons
-
-Automating data updates for new seasons
+- Adding data visualizations (e.g., bar charts of top value players)  
+- Incorporating additional metrics (BPM, EPM, etc.)  
+- Adjusting for position or role-based expectations  
+- Extending analysis to multiple seasons  
+- Automating data updates for future seasons  
 
 License
 
@@ -151,8 +126,10 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 Acknowledgments
 
-FiveThirtyEight for RAPTOR metrics
+- FiveThirtyEight for RAPTOR metrics  
+- Basketball Reference for minutes data  
+- Kaggle contributors for salary datasets  
 
-Basketball Reference for minutes data
+About
 
-Kaggle contributors for salary datasets
+Built a data-driven NBA analysis pipeline in Python using **2022–23 season data**, merging RAPTOR
